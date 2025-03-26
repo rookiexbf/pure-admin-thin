@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Template 示例</title>
+    <style>
+      #grid {
+        display: grid;
+        grid-template: repeat(4, 1fr) / 50px 100px;
+        height: 100px;
+      }
+
+      #item1 {
+        grid-area: 2 / 2 / auto / span 3;
+        background-color: lime;
+      }
+
+      #item2 {
+        background-color: yellow;
+      }
+
+      #item3 {
+        background-color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="grid">
+      <div id="item1"></div>
+      <div id="item2"></div>
+      <div id="item3"></div>
+    </div>
+  </body>
+</html>
