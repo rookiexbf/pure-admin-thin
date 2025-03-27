@@ -1,4 +1,5 @@
 {
+  "homepage": "https://rookiexbf.github.io/pure-admin-thin/",
   "name": "pure-admin-thin",
   "version": "5.9.0",
   "private": true,
@@ -6,7 +7,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=4096 vite",
     "serve": "pnpm dev",
-    "build": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build",
+    "build": "rimraf dist && cross-env NODE_OPTIONS=--max-old-space-size=8192 vite build",
     "build:staging": "rimraf dist && vite build --mode staging",
     "report": "rimraf dist && vite build",
     "preview": "vite preview",
@@ -19,7 +20,9 @@
     "lint:stylelint": "stylelint --cache --fix \"**/*.{html,vue,css,scss}\" --cache-location node_modules/.cache/stylelint/",
     "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint",
     "prepare": "husky",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "pure-admin-thin",
@@ -95,12 +98,14 @@
     "autoprefixer": "^10.4.20",
     "boxen": "^8.0.1",
     "code-inspector-plugin": "^0.18.2",
+    "cross-env": "^7.0.3",
     "cssnano": "^7.0.6",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-define-config": "^2.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.32.0",
+    "gh-pages": "^6.3.0",
     "gradient-string": "^3.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",

@@ -1,0 +1,31 @@
+name: Deploy Vue to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 当 main 分支有 push 操作时，触发部署
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # 运行环境：最新的 Ubuntu
+
+    steps:
+      - name: Checkout Repository  # 获取代码
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js  # 设置 Node.js 环境
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # 使用 Node.js 20
+
+      - name: Install Dependencies  # 安装项目依赖
+        run: npm install
+
+      - name: Build Project  # 构建 Vue 项目
+        run: npm run build
+
+      - name: Deploy to GitHub Pages  # 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub 提供的 token
+          publish_dir: ./dist  # 指定部署的目录
